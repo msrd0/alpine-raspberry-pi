@@ -12,7 +12,7 @@ jobs:
     - env:
         ALPINE_BRANCH: edge
         ALPINE_MIRROR: http://dl-cdn.alpinelinux.org/alpine
-        ARCH: armhf
+        ARCH: aarch64
       run: |
         ./docker-runner
 
