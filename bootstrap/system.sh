@@ -26,7 +26,7 @@ addgroup -S octoprint
 adduser -h /usr/local/octoprint -G octoprint -S -D octoprint
 adduser octoprint dialout
 chown octoprint:octoprint /usr/local/octoprint
-su octoprint <<EOF
+su -s /bin/ash octoprint <<EOF
 virtualenv .
 ./bin/pip install octoprint
 EOF

@@ -10,7 +10,7 @@ for GRP in spi i2c gpio; do
 	addgroup --system $GRP
 done
 
-adduser -D $FIRST_USER_NAME
+adduser -s /bin/ash -D $FIRST_USER_NAME
 
 for GRP in adm dialout cdrom audio users video games input gpio spi i2c netdev; do
   adduser $FIRST_USER_NAME $GRP
