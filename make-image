@@ -32,7 +32,7 @@ ROOT_DEV="$LOOP_DEV"p2
 
 # format partitions
 mkfs.fat -F32 -n ALPINE "$BOOT_DEV"
-mkfs.ext4 "$ROOT_DEV"
+mkfs.ext4 -O '^has_journal' "$ROOT_DEV"
 mkdir -p /alpine
 mount --make-private "$ROOT_DEV" /alpine
 mkdir -p /alpine/boot

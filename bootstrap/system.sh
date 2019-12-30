@@ -26,6 +26,7 @@ addgroup -S octoprint
 adduser -h /usr/local/octoprint -G octoprint -S -D octoprint
 adduser octoprint dialout
 chown octoprint:octoprint /usr/local/octoprint
+apk add py3-virtualenv
 su -s /bin/ash octoprint <<EOF
 virtualenv .
 ./bin/pip install octoprint
