@@ -28,6 +28,7 @@ adduser octoprint dialout
 chown octoprint:octoprint /usr/local/octoprint
 apk add py3-virtualenv
 su -s /bin/ash octoprint <<EOF
+cd
 virtualenv .
 ./bin/pip install octoprint
 EOF
