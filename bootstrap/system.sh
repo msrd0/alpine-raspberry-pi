@@ -52,7 +52,7 @@ chmod +x /etc/init.d/octoprint
 rc-update add octoprint
 
 # mjpg-streamer
-apk add ffmpeg libjpeg-turbo-dev
+apk add ffmpeg libjpeg-turbo-dev runit
 git clone https://github.com/raspberrypi/userland
 cd userland
 sed -i 's/ bash / sh /g' host_applications/linux/apps/raspicam/CMakeLists.txt
@@ -79,13 +79,16 @@ cat >/usr/local/bin/mjpg.sh <<EOF
 #!/bin/sh
 set -e
 
+modprobe bcm2835-v4l2
+chgrp video /dev/video0
+chmod g+rw /dev/video0
+
 export LD_LIBRARY_PATH=/opt/vc/lib
-mjpg_streamer -o "output_http.so -w /usr/local/share/mjpg-streamer/www/" -i "input_uvc.so -r 1440x1080 -d /dev/video0 -f 15"
+chpst -u mjpg:video -- mjpg_streamer -o "output_http.so -w /usr/local/share/mjpg-streamer/www/" -i "input_uvc.so -r 1440x1080 -d /dev/video0 -f 15"
 EOF
 cat >/etc/init.d/mjpg-streamer <<EOF
 #!/sbin/openrc-run
 command="/usr/local/bin/mjpg.sh"
-command_user="mjpg"
 command_background="yes"
 pidfile="/run/mjpg-streamer.pid"
 depend() {
