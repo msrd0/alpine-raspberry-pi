@@ -18,7 +18,8 @@ apk add chrony tzdata
 setup-timezone -z Europe/Berlin
 
 # other stuff
-apk add tmux emacs-nox htop curl wget wiringpi cage cmake make qt5-qtbase-dev qt5-qtwayland-dev git
+apk add tmux emacs-nox htop curl wget wiringpi cage mesa-dri-vc4 libinput cmake make qt5-qtbase-dev qt5-qtwayland-dev git usb
+echo "vc4" >/etc/modules-load.d/vc4.conf
 
 # login
 apk add util-linux
@@ -36,3 +37,16 @@ cd
 virtualenv .
 ./bin/pip install octoprint
 EOF
+cat >/etc/init.d/octoprint <<EOF
+#!/sbin/openrc-run
+command="/usr/local/octoprint/bin/octoprint"
+command_args="serve"
+command_user="octoprint"
+command_background="yes"
+pidfile="/run/octoprint.pid"
+depend() {
+        need net
+}
+EOF
+chmod +x /etc/init.d/octoprint
+rc-update add octoprint
