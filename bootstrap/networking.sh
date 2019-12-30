@@ -29,7 +29,3 @@ EOF
 
 # avahi
 apk add dbus avahi
-
-# bluetooth
-apk add bluez bluez-deprecated
-sed -i '/bcm43xx/s/^#//' /etc/mdev.conf

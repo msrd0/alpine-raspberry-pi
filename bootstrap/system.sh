@@ -18,7 +18,11 @@ apk add chrony tzdata
 setup-timezone -z Europe/Berlin
 
 # other stuff
-apk add emacs-nox htop curl wget wiringpi cage cmake make qt5-qtbase-dev qt5-qtwayland-dev git
+apk add tmux emacs-nox htop curl wget wiringpi cage cmake make qt5-qtbase-dev qt5-qtwayland-dev git
+
+# login
+apk add util-linux
+sed -E -e 's,getty(.*)$,agetty\1 linux,' -e '/tty1/s,agetty,agetty --autologin pi --noclear,' -i /etc/inittab
 
 # octoprint
 mkdir -p /usr/local/octoprint

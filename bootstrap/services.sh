@@ -12,7 +12,7 @@ for service in modules sysctl hostname bootmisc swclock syslog swap; do
 	rc-update add $service boot
 done
 
-for service in dbus haveged sshd chronyd local wpa_supplicant networking avahi-daemon bluetooth; do
+for service in dbus haveged sshd chronyd local wpa_supplicant networking avahi-daemon; do
 	rc-update add $service default
 done
 
