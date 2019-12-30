@@ -22,7 +22,7 @@ apk add emacs-nox htop curl wget wiringpi cage cmake make qt5-qtbase-dev qt5-qtw
 
 # octoprint
 mkdir -p /usr/local/octoprint
-adduser -h /usr/local/octoprint -G dialout -S -D
+adduser -h /usr/local/octoprint -G dialout -S -D octoprint
 chown octoprint:octoprint /usr/local/octoprint
 su octoprint <<EOF
 virtualenv .
