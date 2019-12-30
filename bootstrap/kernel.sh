@@ -7,6 +7,7 @@ echo "dwc_otg.lpm_enable=0 console=serial0,115200 console=tty1 root=/dev/mmcblk0
 cat <<EOF > /boot/config.txt
 disable_splash=1
 boot_delay=0
+arm_64bit=1
 
 # uart
 enable_uart=1
