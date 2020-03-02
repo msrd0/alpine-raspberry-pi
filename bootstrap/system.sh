@@ -84,6 +84,8 @@ chgrp video /dev/video0
 chmod g+rw /dev/video0
 
 export LD_LIBRARY_PATH=/opt/vc/lib
+
+v4l2-ctl --set-fmt-video=width=1440,height=1080,pixelformat=3
 chpst -u mjpg:video -- mjpg_streamer -o "output_http.so -w /usr/local/share/mjpg-streamer/www/" -i "input_uvc.so -r 1440x1080 -d /dev/video0 -f 15"
 EOF
 cat >/etc/init.d/mjpg-streamer <<EOF
