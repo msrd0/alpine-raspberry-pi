@@ -10,8 +10,8 @@ jobs:
     - uses: actions/checkout@v1
 
     - env:
-        ALPINE_BRANCH: edge
-        ALPINE_MIRROR: http://dl-cdn.alpinelinux.org/alpine
+        ALPINE_BRANCH: v3.12
+        ALPINE_MIRROR: https://dl-cdn.alpinelinux.org/alpine
         ARCH: aarch64
       run: |
         ./docker-runner
